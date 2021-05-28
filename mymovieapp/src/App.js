@@ -48,11 +48,13 @@ function App() {
   const [searchMovie, setSearchMovie] = useState("");
   const handleChangeInput = (event) => {
     setSearchMovie(event.target.value);
+    console.log(searchMovie)
   };
   //new state for the ratingfilter
   const [searchRatingMovie, setSearchRatingMovie] = useState(1);
   const handleChangeRating = (value) => {
     setSearchRatingMovie(value);
+    console.log(searchRatingMovie)
   };
   return (
     <div className="App">
@@ -70,6 +72,9 @@ function App() {
             movie.rating >= searchRatingMovie
         )}
         addMovieFunc={addMovieFunc}
+        searchMovie={searchMovie}
+        searchRatingMovie={searchRatingMovie}
+
       />
       <br />
       <Button

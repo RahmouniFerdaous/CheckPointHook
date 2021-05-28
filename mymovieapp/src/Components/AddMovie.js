@@ -11,7 +11,6 @@ import { v4 as uuidv4 } from "uuid";
 
 const AddMovie = ({ addMovieFunc }) => {
   const [movie, setMovie] = useState({
-    id: uuidv4(),
     title: "",
     description: "",
     posterURL: "",
@@ -91,7 +90,7 @@ const AddMovie = ({ addMovieFunc }) => {
           />
         </Form>
         <Button
-          onClick={() => addMovieFunc({ ...movie, rating })}
+          onClick={() => addMovieFunc({ ...movie,  id: uuidv4(), rating })}
           style={{ marginTop: "0.8cm", marginBottom: "0.8cm" }}
           variant="info"
         >
