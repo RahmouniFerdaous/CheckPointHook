@@ -1,15 +1,10 @@
 import React, { useState } from "react";
-import {
-  Form,
-  FormControl,
-  InputGroup,
-  Button,
-  Container,
+import {Modal,Button,Form,InputGroup,FormControl
 } from "react-bootstrap";
 import StarRatingComponent from "react-star-rating-component";
 import { v4 as uuidv4 } from "uuid";
 
-const AddMovie = ({ addMovieFunc }) => {
+const AddMovie = ({show,handleClose,addMovieFunc }) => {
   const [movie, setMovie] = useState({
     title: "",
     description: "",
@@ -28,7 +23,11 @@ const AddMovie = ({ addMovieFunc }) => {
 
   return (
     <div>
-      <Container>
+    <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Add Movie</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
         <Form>
           <InputGroup size="lg">
             <InputGroup.Prepend>
@@ -55,7 +54,7 @@ const AddMovie = ({ addMovieFunc }) => {
           </InputGroup>
           <br />
           <InputGroup>
-            <InputGroup.Prepend style={{ marginRight: "450px" }}>
+            <InputGroup.Prepend style={{ marginRight: "120px" }}>
               <InputGroup.Text>Rating</InputGroup.Text>
             </InputGroup.Prepend>
             <StarRatingComponent
@@ -83,20 +82,23 @@ const AddMovie = ({ addMovieFunc }) => {
             variant="top"
             src={movie.posterURL}
             style={{
-              widht: "360.938px",
-              height: "481.250px",
+              widht: "120px",
+              height: "100px",
               marginTop: "0.7cm",
+              marginLeft:"3.5cm"
             }}
           />
         </Form>
-        <Button
-          onClick={() => addMovieFunc({ ...movie,  id: uuidv4(), rating })}
-          style={{ marginTop: "0.8cm", marginBottom: "0.8cm" }}
-          variant="info"
-        >
-          Save Movie
-        </Button>
-      </Container>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={() => addMovieFunc({ ...movie,  id: uuidv4(), rating })}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </div>
   );
 };

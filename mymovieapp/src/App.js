@@ -37,12 +37,18 @@ function App() {
   ]);
   // show is a state that show the addMovie component
   const [show, setShow] = useState(false);
+  //Button Add movie
   const handleShow = () => {
     setShow(!show);
+  };
+  //Button Close
+  const handleClose = () => {
+    setShow(false);
   };
   //add movie fct as props to the add movie component with param (...movie)
   function addMovieFunc(newobj) {
     setMovies([...movies, newobj]);
+    setShow(false);
   }
   //new state for the input filter
   const [searchMovie, setSearchMovie] = useState("");
@@ -84,7 +90,7 @@ function App() {
       >
         Add Movie
       </Button>
-      {show && <AddMovie addMovieFunc={addMovieFunc} />}
+      {show && <AddMovie show={show} handleClose={handleClose} addMovieFunc={addMovieFunc} />}
     </div>
   );
 }
